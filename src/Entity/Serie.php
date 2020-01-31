@@ -6,9 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SerieRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Serie
 {
+    const SLUG = [
+        1 => 'série',
+        2 => 'exposition'
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -32,25 +38,29 @@ class Serie
     private $tech;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $creation_date;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="Serie")
      */
     private $id_img;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $slug;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true, options={"default" : 0})
      */
     private $slide_on;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $serie_img;
 
     public function getId(): ?int
     {
@@ -117,6 +127,11 @@ class Serie
         return $this;
     }
 
+    public function getSlugType(): string
+    {
+        return self::SLUG[$this->slug];
+    }
+
     public function getSlug(): ?int
     {
         return $this->slug;
@@ -140,4 +155,30 @@ class Serie
 
         return $this;
     }
+
+    public function getSerieImg(): ?string
+    {
+        return $this->serie_img;
+    }
+
+    public function setSerieImg(string $serie_img)
+    {
+        $this->serie_img = $serie_img;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function createDate()
+    {
+        if($this->getCreationDate() == null)
+        {
+            $this->setCreationDate(new \DateTime('now'));
+        }
+
+    }
+
 }

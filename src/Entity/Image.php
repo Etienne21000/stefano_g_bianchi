@@ -32,15 +32,14 @@ class Image
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="App\Entity\Serie", inversedBy="Image")
-     */
-    private $id_serie;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $image_date;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $id_serie;
 
     public function getId(): ?int
     {
@@ -83,18 +82,6 @@ class Image
         return $this;
     }
 
-    public function getIdSerie(): ?int
-    {
-        return $this->id_serie;
-    }
-
-    public function setIdSerie(int $id_serie): self
-    {
-        $this->id_serie = $id_serie;
-
-        return $this;
-    }
-
     public function getImageDate(): ?\DateTimeInterface
     {
         return $this->image_date;
@@ -106,4 +93,17 @@ class Image
 
         return $this;
     }
+
+    public function getIdSerie(): ?int
+    {
+        return $this->id_serie;
+    }
+
+    public function setIdSerie(?int $id_serie): self
+    {
+        $this->id_serie = $id_serie;
+
+        return $this;
+    }
+
 }

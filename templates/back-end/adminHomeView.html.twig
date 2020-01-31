@@ -1,0 +1,12 @@
+{% extends 'back.html.twig' %}
+
+{% block title 'Bienvenue sur le back-office' %}
+
+{% block body %}
+<body>
+    {% block content %}
+            {% block header %} {{ parent()  }} {% endblock %}
+        <p>Bonjour tout le monde</p>
+    {% endblock %}
+</body>
+{% endblock %}

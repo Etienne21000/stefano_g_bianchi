@@ -1,0 +1,53 @@
+{% extends 'front.html.twig' %}
+
+{% block title 'Stefano G. Bianchi Campo d\'Ombra' %}
+
+{% block body %}
+    <body>
+    {% block content %}
+        {% block header %} {{ parent() }} {% endblock %}
+
+        <section class="body">
+
+            <div class="title">
+                <h3>
+                    SERIES
+                </h3>
+            </div>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <article class="all_gallery">
+                {% for data in serie %}
+
+                <div class="serie">
+
+                    <a href="">
+                        <div class="calque">
+
+                            <p>
+                                {{ data.title }}
+                            </p>
+
+                        </div>
+                    </a>
+
+                    <div class="serie_content">
+
+                        <div class="img_serie">
+                            <img src="" alt=""/>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+            </article>
+        </section>
+
+    {% endblock %}
+    </body>
+{% endblock %}

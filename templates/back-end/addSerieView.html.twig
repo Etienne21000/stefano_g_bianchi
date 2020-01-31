@@ -1,0 +1,49 @@
+{% extends 'back.html.twig' %}
+
+{% block title 'Bienvenue sur le back-office' %}
+
+{% block body %}
+    {% block content %}
+        {% block header %} {{ parent() }} {% endblock %}
+
+        <div class="blocInfos">
+
+            <div class="containerAdmin">
+
+                <section class="container">
+                    <div class="titre">
+                        <h4>
+                            Créer une nouvelle série
+                        </h4>
+                    </div>
+
+                    <aside id="addSerie">
+
+                        {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-md-4">{{ form_row(form.title) }}</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-7">{{ form_row(form.description) }}</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-7">{{ form_row(form.tech) }}</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">{{ form_row(form.slug) }}</div>
+                        </div>
+
+                        <button class="btn btn-outline-primary">Ajouter</button>
+                        {{ form_end(form) }}
+
+                    </aside>
+
+                </section>
+            </div>
+        </div>
+
+    {% endblock %}
+{% endblock %}
