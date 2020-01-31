@@ -38,6 +38,7 @@ class Serie
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="Serie")
      */
     private $id_img;
 

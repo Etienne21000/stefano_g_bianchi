@@ -33,6 +33,7 @@ class Image
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Serie", inversedBy="Image")
      */
     private $id_serie;
 
